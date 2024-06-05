@@ -1,0 +1,289 @@
+2024-06-02 19:15:55.702 | INFO     | __main__:<module>:70 - I'M ALIVE
+2024-06-03 19:50:38.101 | INFO     | Database.orm_query:orm_add_user:26 - Пользователь Megagigapoopfart попытался зарегистрироваться повторно
+2024-06-04 03:46:45.064 | DEBUG    | Handlers.learn_general:learn_byb:137 - 'NoneType' object has no attribute 'word'
+Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7189670228)
+Failed to fetch updates - TelegramServerError: Telegram server says - Bad Gateway
+Sleep for 1.226026 seconds and try again... (tryings = 1, bot id = 7189670228)
+Cause exception while process update id=729658090 by bot id=7189670228
+IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: themed_word.theme_id
+[SQL: INSERT INTO themed_word (word, translation, transcription, theme_id) VALUES (?, ?, ?, ?)]
+[parameters: ('שם משפחה', 'фамилия', 'ше́м мишпаха́', None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 146, in execute
+    self._adapt_connection._handle_exception(error)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 298, in _handle_exception
+    raise error
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 128, in execute
+    self.await_(_cursor.execute(operation, parameters))
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 131, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 48, in execute
+    await self._execute(self._cursor.execute, sql, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 40, in _execute
+    return await self._conn._execute(fn, *args, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 132, in _execute
+    return await future
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 115, in run
+    result = function()
+sqlite3.IntegrityError: NOT NULL constraint failed: themed_word.theme_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 49, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/root/Hebrew/Hebrew-Bot/Middleware/middleware.py", line 20, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 142, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 137, in _wrapped
+    return await self._propagate_event(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 170, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 142, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 137, in _wrapped
+    return await self._propagate_event(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 162, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/root/Hebrew/Hebrew-Bot/Handlers/save_general.py", line 122, in save_on_theme_fifth
+    await orm_save_themed_word(session=session, data=state_data)
+  File "/root/Hebrew/Hebrew-Bot/Database/orm_query.py", line 162, in orm_save_themed_word
+    await session.commit()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4341, in flush
+    self._flush(objects)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4476, in _flush
+    with util.safe_reraise():
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4437, in _flush
+    flush_context.execute()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 146, in execute
+    self._adapt_connection._handle_exception(error)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 298, in _handle_exception
+    raise error
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 128, in execute
+    self.await_(_cursor.execute(operation, parameters))
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 131, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 48, in execute
+    await self._execute(self._cursor.execute, sql, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 40, in _execute
+    return await self._conn._execute(fn, *args, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 132, in _execute
+    return await future
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 115, in run
+    result = function()
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: themed_word.theme_id
+[SQL: INSERT INTO themed_word (word, translation, transcription, theme_id) VALUES (?, ?, ?, ?)]
+[parameters: ('שם משפחה', 'фамилия', 'ше́м мишпаха́', None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Cause exception while process update id=729658120 by bot id=7189670228
+IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: themed_word.theme_id
+[SQL: INSERT INTO themed_word (word, translation, transcription, theme_id) VALUES (?, ?, ?, ?)]
+[parameters: ('כתובת', 'адрес', 'кто́вэт', None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 146, in execute
+    self._adapt_connection._handle_exception(error)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 298, in _handle_exception
+    raise error
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 128, in execute
+    self.await_(_cursor.execute(operation, parameters))
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 131, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 48, in execute
+    await self._execute(self._cursor.execute, sql, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 40, in _execute
+    return await self._conn._execute(fn, *args, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 132, in _execute
+    return await future
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 115, in run
+    result = function()
+sqlite3.IntegrityError: NOT NULL constraint failed: themed_word.theme_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 49, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/root/Hebrew/Hebrew-Bot/Middleware/middleware.py", line 20, in __call__
+    return await handler(event, data)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 142, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 137, in _wrapped
+    return await self._propagate_event(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 170, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 142, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 137, in _wrapped
+    return await self._propagate_event(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 162, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/root/Hebrew/Hebrew-Bot/Handlers/save_general.py", line 122, in save_on_theme_fifth
+    await orm_save_themed_word(session=session, data=state_data)
+  File "/root/Hebrew/Hebrew-Bot/Database/orm_query.py", line 162, in orm_save_themed_word
+    await session.commit()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4341, in flush
+    self._flush(objects)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4476, in _flush
+    with util.safe_reraise():
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4437, in _flush
+    flush_context.execute()
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 146, in execute
+    self._adapt_connection._handle_exception(error)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 298, in _handle_exception
+    raise error
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 128, in execute
+    self.await_(_cursor.execute(operation, parameters))
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 131, in await_only
+    return current.driver.switch(awaitable)  # type: ignore[no-any-return]
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 48, in execute
+    await self._execute(self._cursor.execute, sql, parameters)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/cursor.py", line 40, in _execute
+    return await self._conn._execute(fn, *args, **kwargs)
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 132, in _execute
+    return await future
+  File "/root/Hebrew/Hebrew-Bot/venv/lib/python3.10/site-packages/aiosqlite/core.py", line 115, in run
+    result = function()
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: themed_word.theme_id
+[SQL: INSERT INTO themed_word (word, translation, transcription, theme_id) VALUES (?, ?, ?, ?)]
+[parameters: ('כתובת', 'адрес', 'кто́вэт', None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
