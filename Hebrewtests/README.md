@@ -7,11 +7,11 @@
 Проект организован следующим образом:
 
 Auxiliaries
-    ├── init.py
-    ├── commands.py # Команды бота
-    ├── helps.py # Вспомогательные функции
-    ├── states.py # Состояния FSM (Finite State Machine)
-    ├── texts.py # Тексты сообщений
+    \n├── init.py
+    \n├── commands.py # Команды бота
+    \n├── helps.py # Вспомогательные функции
+    \n├── states.py # Состояния FSM (Finite State Machine)
+    \n├── texts.py # Тексты сообщений
 Database
     ├── init.py
     ├── engine.py # Движок базы данных
