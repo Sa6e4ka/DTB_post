@@ -271,7 +271,7 @@ async def orm_get_user_compete_information(session: AsyncSession, id : str) -> d
     point_dict = {
         "points" : result.global_points,
         "attempts" : result.global_attempts,
-        "percentage" : result.global_percentage 
+        "percentage" : round(result.global_percentage, 2) 
     }
 
     return point_dict
