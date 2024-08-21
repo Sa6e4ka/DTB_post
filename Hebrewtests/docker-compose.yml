@@ -1,9 +1,0 @@
-version: '3.12'
-services:
-  bot:
-    build: .
-    container_name: hebrew_learning_bot
-    env_file:
-      - .env
-    ports:
-      - "8000:8000"
