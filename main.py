@@ -21,7 +21,6 @@ from Handlers import (router_, scheduler)
 
 # Импортируем команды
 from Auxiliaries import private
-from Loggs import error_handler_func
 
 TOKEN = str(os.environ.get("TOKEN"))
 # Создаем объект бота (передаем ему режим парсига получаемых ответов)
@@ -30,7 +29,7 @@ bot = Bot(token="6851613825:AAGlWJ7uueyif8JcmAFRlXtg-7ihNN0J_d8", default=Defaul
 dp = Dispatcher()
 
 # Подключаем к диспетчеру все роутеры из создаваемых хендлеров
-dp.include_routers(router_)
+dp.include_routers(router_,)
 
 
 # Добавляем основные "глобальные" хендлеры

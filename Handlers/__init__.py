@@ -4,5 +4,6 @@ from .get_loggs import logging_router
 __all__ = [
     "router_",
     "scheduler",
-    "logging_router"
+    "logging_router",
+    "vu_router"
 ]

@@ -1,18 +1,28 @@
-'''
-Хендлеры приветствия и кнопок перехода в главное меню
-'''
 from aiogram import F, Router, Bot
 from aiogram.filters import StateFilter, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import  Message, CallbackQuery
 
+from dotenv import load_dotenv, find_dotenv
 from typing import Union
+from io import BytesIO
+import os
 
 from Loggs import error_handler_func
-from Auxiliaries import MainState, scheduler, schedule_post
+from Auxiliaries import MainState, scheduler, schedule_post, S3Client
+
+
 
 # Start Router
 router_ = Router()
+
+find_dotenv(".env")
+load_dotenv()
+s3 = S3Client(
+    access_key=os.environ.get("AWS_ACCESS_KEY"),
+    secret_key=os.environ.get("AWS_SECRET_KEY"),
+    bucket_name=os.environ.get("AWS_BUCKET_NAME")
+)
 
     
 @router_.message(StateFilter(None, MainState.main), F.video)
@@ -20,14 +30,26 @@ router_ = Router()
 async def handle_video(message: Message, state: FSMContext, bot: Bot):
     
     state_data = await state.get_data()
-    file = message.video.file_id
+    file_id = message.video.file_id
 
+    file = await bot.get_file(file_id)
+
+    # Реализация потоковой передачи данных для того, чтобы миновать загрузку видео на устройство
+    bio = BytesIO()
+    await bot.download_file(file.file_path, destination=bio)
+    bio.seek(0)  
+
+    # Удаление и загрузка видео на бакете 
+    await s3.delete_file("meme.m4")
+    await s3.upload_file(object_name="meme.mp4", content=bio)
+
+    # Логика для сохрания id видео в машину состояний
     if "videos" in state_data.keys():
-        state_data["videos"].append(file)
+        state_data["videos"].append(file_id)
         queue_num = len(state_data["videos"])
         
     else:
-        await state.update_data(videos = [file])
+        await state.update_data(videos = [file_id])
         await state.set_state(MainState.main)
 
         state_data = await state.get_data()
