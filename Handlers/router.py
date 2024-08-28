@@ -1,6 +1,5 @@
 from aiogram import F, Router, Bot
-from aiogram.filters import StateFilter, Command
-from aiogram.fsm.context import FSMContext
+from aiogram.filters import Command
 from aiogram.types import  Message, CallbackQuery
 
 from dotenv import load_dotenv, find_dotenv
@@ -9,11 +8,9 @@ from io import BytesIO
 import os
 
 from Loggs import error_handler_func
-from Auxiliaries import MainState, scheduler, schedule_post, S3Client
+from Auxiliaries import scheduler, schedule_post, S3Client
 
-
-
-# Start Router
+# Router
 router_ = Router()
 
 find_dotenv(".env")
@@ -24,14 +21,13 @@ s3 = S3Client(
     bucket_name=os.environ.get("AWS_BUCKET_NAME")
 )
 
+global_state = {}
     
-@router_.message(StateFilter(None, MainState.main), F.video)
+@router_.message(F.video)
 @error_handler_func
-async def handle_video(message: Message, state: FSMContext, bot: Bot):
+async def handle_video(message: Message, bot: Bot):
     
-    state_data = await state.get_data()
     file_id = message.video.file_id
-
     file = await bot.get_file(file_id)
 
     # Реализация потоковой передачи данных для того, чтобы миновать загрузку видео на устройство
@@ -44,30 +40,26 @@ async def handle_video(message: Message, state: FSMContext, bot: Bot):
     await s3.upload_file(object_name="meme.mp4", content=bio)
 
     # Логика для сохрания id видео в машину состояний
-    if "videos" in state_data.keys():
-        state_data["videos"].append(file_id)
-        queue_num = len(state_data["videos"])
+    if "videos" in global_state.keys():
+        global_state["videos"].append(file_id)
+        queue_num = len(global_state["videos"])
         
     else:
-        await state.update_data(videos = [file_id])
-        await state.set_state(MainState.main)
+        global_state["videos"] = [file_id]
+        queue_num = len(global_state["videos"])
 
-        state_data = await state.get_data()
-        queue_num = len(state_data["videos"])
-
-    for i, video in enumerate(state_data["videos"]):
+    for i, video in enumerate(global_state["videos"]):
         time = await schedule_post(video, bot, i)
 
     await message.answer(f"Ваше видео успешно добавлено в очередь для отправки.\n\nНомер в очереди: <b>{queue_num}</b>\n\nОно опубликуется\n\n<b>{time}</b>")
      
 
-@router_.message(StateFilter(None, MainState.main), Command("queue"))
-async def queue(message: Message, state: FSMContext):
-    state_data = await state.get_data()
+@router_.message(Command("queue"))
+async def queue(message: Message):
     
-    if "videos" in state_data.keys():
+    if "videos" in global_state.keys():
         await message.answer(
-            text=f"Количество видео в очереди: {len(state_data["videos"])}"
+            text=f"Количество видео в очереди: {len(global_state["videos"])}"
         )
         return
     
@@ -75,10 +67,10 @@ async def queue(message: Message, state: FSMContext):
 
 
 @router_.callback_query(F.data == "Перезапустить бота")
-@router_.message(StateFilter(None, MainState.main), Command("clear"))
-async def queue_clear(message_or_call: Union[Message, CallbackQuery], state: FSMContext):
+@router_.message(Command("clear"))
+async def queue_clear(message_or_call: Union[Message, CallbackQuery]):
     scheduler.remove_all_jobs()
-    await state.update_data(videos = [])
+    global_state["videos"] = []
 
     if type(message_or_call) is Message:
         await message_or_call.answer("Очередь успешно очищена!")

@@ -7,29 +7,29 @@ from Loggs import logger
 from aiogram import Bot, Dispatcher, F
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
-from aiogram.types import BotCommandScopeAllPrivateChats, Message, CallbackQuery
+from aiogram.types import BotCommandScopeAllPrivateChats, Message
 from aiogram.client.default import DefaultBotProperties
 
 
 # Достаем токен бота и url базы данных из переменной окружения
 from dotenv import find_dotenv, load_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(".env"))
 
 
 # Из папки handlers импортируем все хендлеры
-from Handlers import (router_, scheduler)
+from Handlers import (router_, scheduler, logging_router)
 
 # Импортируем команды
 from Auxiliaries import private
 
 TOKEN = str(os.environ.get("TOKEN"))
 # Создаем объект бота (передаем ему режим парсига получаемых ответов)
-bot = Bot(token="6851613825:AAGlWJ7uueyif8JcmAFRlXtg-7ihNN0J_d8", default=DefaultBotProperties(parse_mode='HTML'))
+bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode='HTML'))
 # Создаем объект диспетчера
 dp = Dispatcher()
 
 # Подключаем к диспетчеру все роутеры из создаваемых хендлеров
-dp.include_routers(router_,)
+dp.include_routers(router_, logging_router)
 
 
 # Добавляем основные "глобальные" хендлеры
