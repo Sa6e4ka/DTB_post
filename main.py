@@ -10,11 +10,9 @@ from aiogram.filters import Command
 from aiogram.types import BotCommandScopeAllPrivateChats, Message
 from aiogram.client.default import DefaultBotProperties
 
-
 # Достаем токен бота и url базы данных из переменной окружения
 from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv(".env"))
-
 
 # Из папки handlers импортируем все хендлеры
 from Handlers import (router_, scheduler, logging_router)

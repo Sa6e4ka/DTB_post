@@ -49,7 +49,7 @@ async def handle_video(message: Message, bot: Bot):
         queue_num = len(global_state["videos"])
 
     for i, video in enumerate(global_state["videos"]):
-        time = await schedule_post(video, bot, i)
+        time = await schedule_post(video, bot, i, global_state)
 
     await message.answer(f"Ваше видео успешно добавлено в очередь для отправки.\n\nНомер в очереди: <b>{queue_num}</b>\n\nОно опубликуется\n\n<b>{time}</b>")
      
@@ -69,11 +69,13 @@ async def queue(message: Message):
 @router_.callback_query(F.data == "Перезапустить бота")
 @router_.message(Command("clear"))
 async def queue_clear(message_or_call: Union[Message, CallbackQuery]):
+    print(scheduler.get_jobs())
     scheduler.remove_all_jobs()
+
     global_state["videos"] = []
 
     if type(message_or_call) is Message:
-        await message_or_call.answer("Очередь успешно очищена!")
+        await message_or_call.answer("Очередь успешно очищена\n\nБот перезапущен")
         return
     await message_or_call.message.answer("Очередь успешно очищена!")
 

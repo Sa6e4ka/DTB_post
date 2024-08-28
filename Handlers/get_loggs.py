@@ -26,8 +26,8 @@ async def send_to_channel(message: Message, bot: Bot):
     file_info = FSInputFile("Loggs/loggs.log")
 
     await bot.send_document(
-        chat_id="-4578892217", 
-        document=file_info, caption="Последние логи", 
+        chat_id=environ.get("CHAT_ID"), 
+        document=file_info, caption="Последние логи"
     )
 
 
