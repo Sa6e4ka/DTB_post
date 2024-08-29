@@ -1,4 +1,4 @@
-# Hebrew Learning Bot
+# Daun Type Beat Post Bot
 
 Этот проект представляет собой Telegram-бота для отложенного постинга видео в канал telegram с параллельной потоковой их загрузкой на бакет aws s3
 
